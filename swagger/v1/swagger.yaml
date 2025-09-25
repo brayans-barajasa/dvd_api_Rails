@@ -1,0 +1,158 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "DVD API",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/clients": {
+      "get": {
+        "summary": "Lista todos los clientes",
+        "tags": [
+          "Clients"
+        ],
+        "responses": {
+          "200": {
+            "description": "Lista obtenida"
+          }
+        }
+      },
+      "post": {
+        "summary": "Crea un cliente",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Cliente creado"
+          },
+          "422": {
+            "description": "Error de validación"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  }
+                },
+                "required": [
+                  "first_name",
+                  "last_name",
+                  "email"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/clients/{id}": {
+      "get": {
+        "summary": "Muestra un cliente",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente encontrado"
+          },
+          "404": {
+            "description": "Cliente no encontrado"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualiza un cliente",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente actualizado"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "first_name": {
+                    "type": "string"
+                  },
+                  "last_name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string",
+                    "format": "email"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Elimina un cliente",
+        "tags": [
+          "Clients"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente eliminado"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Servidor local"
+    }
+  ]
+}

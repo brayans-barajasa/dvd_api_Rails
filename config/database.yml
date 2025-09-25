@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  port: 8080
+  username: ruby
+  password: 12345
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: dvdrental # 👈 aquí usas la base importada en Docker
+
+test:
+  <<: *default
+  database: dvdrental_test # si quieres practicar tests, crea esta db en Postgres
+
+production:
+  <<: *default
+  database: dvdrental
